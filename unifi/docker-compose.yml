@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+# ----------------------------------------------------------------
+    unifi-controller:
+        image: ghcr.io/linuxserver/unifi-controller
+        container_name: unifi-controller
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - MEM_LIMIT=1024M #optional
+        volumes:
+          - /home/nick/Documents/workflowFiles/unifi:/config
+        ports:
+          - 3478:3478/udp           # Stun port
+          - 10001:10001/udp         # AP Discovery
+          - 8080:8080               # Device communication
+          - 8443:8443               # Unifi web admin port
+          - 1900:1900/udp           # "Make controller discoverable on L2 network"
+          - 6789:6789               # Mobile throughput test
+          - 5514:5514/udp           # Syslog port
+        restart: unless-stopped

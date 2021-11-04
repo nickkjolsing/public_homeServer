@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+# ----------------------------------------------------------------
+    ombi:
+        image: ghcr.io/linuxserver/ombi
+        container_name: ombi
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/Chicago
+        volumes:
+          - /home/pi/Documents/ombiDocker/config:/config
+        ports:
+          - 3579:3579
+        restart: unless-stopped
+# ----------------------------------------------------------------
+    heimdall:
+      image: ghcr.io/linuxserver/heimdall
+      container_name: heimdall
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+      volumes:
+        - /home/pi/Documents/heimdallDocker/appdata/heimdall:/config
+      restart: unless-stopped
+# ----------------------------------------------------------------
+    swag:
+        image: ghcr.io/linuxserver/swag
+        container_name: swag
+        cap_add:
+          - NET_ADMIN
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/Chicago
+          - URL=grizzlyinvestments.com
+          - SUBDOMAINS=wildcard
+          - VALIDATION=dns
+          - DNSPLUGIN=cloudflare
+        volumes:
+          - /home/pi/Documents/swagDocker/config:/config
+        depends_on:
+          - heimdall
+        ports:
+          - 80:80
+          - 443:443
+        restart: unless-stopped

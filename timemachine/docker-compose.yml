@@ -1,0 +1,20 @@
+---
+    version: "3.3" 
+    services:
+        timemachine:
+            image: mbentley/timemachine:latest
+            container_name: timemachine
+            environment:
+              - PASSWORD=timecapsule
+              - VOLUME_SIZE_LIMIT=200000
+              - TM_USERNAME=timemachine
+              - TM_GROUPNAME=timemachine
+              - TM_UID=1000
+              - TM_GID=1000
+              - SHARE_NAME="Time Capsule"
+            volumes:
+              - /disks/Andromeda/Files/Backups/macbookAir:/opt/timemachine
+              #- timemachine-netatalk:/var/netatalk:
+              #- timemachine-logs:/var/log/supervisor
+            restart: unless-stopped
+    

@@ -1,0 +1,14 @@
+---
+version: "3.3"
+services:
+  tautulli:
+    image: tautulli/tautulli
+    container_name: tautulli
+    environment: 
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/Chicago
+    volumes: 
+      - /disks/Andromeda/workflowFiles/tautulli:/config
+    ports: 
+      - 8181:8181

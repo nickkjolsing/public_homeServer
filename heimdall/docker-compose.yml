@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+# ----------------------------------------------------------------
+    heimdall:
+        image: ghcr.io/linuxserver/heimdall
+        container_name: heimdall
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/Chicago
+        volumes:
+            - /home/nick/Documents/heimdallDocker/appdata/heimdall:/config
+        ports:
+            - 443:443
+        restart: unless-stopped
