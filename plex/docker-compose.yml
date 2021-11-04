@@ -9,7 +9,6 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM=claim-YzSCK8353zjNsJtYvo59
     volumes:
       - /home/nick/Documents/workflowFiles/Plex/:/config
       - "/media/andromeda/Plex/TV Shows/:/tv"
