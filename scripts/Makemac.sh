@@ -17,3 +17,7 @@ brew install --cask spotify -q
 brew install --cask alfred -q
 brew install --cask firefox -q
 brew install --cask appcleaner -q
+brew install --cask telegram -q
+brew install --cask vnc-viewer -q
+brew install --cask brave-browser -q
+brew install --cask vlc -q
