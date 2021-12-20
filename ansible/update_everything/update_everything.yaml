@@ -1,0 +1,31 @@
+---
+- name: Update All The Things
+  hosts: all
+  become: yes
+  vars:
+    - mateo_downloadWorkflow: "/home/nick/Documents/GitHub/homeServer/downloadWorkflow"
+    - lorenzo_plex: "/home/nick/Documents/GitHub/homeServer/plex"
+  tasks:
+    - name: Update Package Lists
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    
+    - name: Upgrade main OS
+      apt: upgrade=dist force_apt_get=yes
+
+    - name: Update Docker Containers Mateo
+      shell:
+        chdir: "{{ mateo_downloadWorkflow }}"
+        cmd: docker-compose down && docker-compose pull && docker-compose up -d
+      register: docker_update_mateo
+      when: ansible_hostname == 'mateo'
+    
+    - name: Update Docker Containers Lorenzo
+      shell:
+        chdir: "{{ lorenzo_plex }}"
+        cmd: docker-compose down && docker-compose pull && docker-compose up -d
+      register: docker_update_lorenzo
+      when: ansible_hostname == 'lorenzo'
+
+    - debug: msg="{{ docker_update_mateo }}"
+    - debug: msg="{{ docker_update_lorenzo }}"
+    

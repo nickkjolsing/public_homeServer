@@ -1,5 +1,4 @@
-
-version: '3.3'
+version: '3'
 networks:
   internal:
     driver: bridge
@@ -108,7 +107,7 @@ services:
       - VRKN_SICKCHILL_1_VERIFY_SSL=false
       - VRKN_SICKCHILL_1_GET_MISSING=true
       - VRKN_SICKCHILL_1_GET_MISSING_RUN_SECONDS=300
-  depends_on:
+    depends_on:
       - influxdb
     restart: unless-stopped
   grafana:
@@ -122,9 +121,9 @@ services:
     volumes: 
       - /home/nick/Documents/workflowFiles/grafana/config-folder:/config
     environment:
-      - GF_PATHS_DATA=/config/data
-      - GF_PATHS_LOGS=/config/logs
-      - GF_PATHS_PLUGINS=/config/plugins
+      # - GF_PATHS_DATA=/config/data
+      # - GF_PATHS_LOGS=/config/logs
+      # - GF_PATHS_PLUGINS=/config/plugins
       - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
     depends_on:
       - influxdb

@@ -9,6 +9,7 @@ services:
       - PGID=1001
       - TZ=America/Chicago
     volumes: 
-      - /disks/Andromeda/workflowFiles/tautulli:/config
+      - /home/nick/Documents/workflowFiles/tautulli:/config
     ports: 
       - 8181:8181
+    restart: unless-stopped

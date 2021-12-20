@@ -11,6 +11,6 @@ services:
       - VERSION=docker
     volumes:
       - /home/nick/Documents/workflowFiles/Plex/:/config
-      - "/media/andromeda/Plex/TV Shows/:/tv"
-      - /media/andromeda/Plex/Movies/:/movies
+      - "/mnt/andromeda/Plex/TV Shows/:/tv"
+      - /mnt/andromeda/Plex/Movies/:/movies
     restart: unless-stopped

@@ -1,0 +1,14 @@
+---
+version: "3.3"
+services:
+  plex:
+    image: portainer/portainer-ce
+    container_name: portainer
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/nick/Documents/portainer/data:/data
+    ports:
+      - 8000:8000
+      - 9443:9443
+    restart: unless-stopped
